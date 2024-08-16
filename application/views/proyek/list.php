@@ -9,13 +9,31 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SEI Internship</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Daftar Proyek</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo site_url('lokasi'); ?>">Daftar Lokasi</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <body>
     <div class="container mt-4">
         <h1 class="mb-4">Daftar Proyek</h1>
 
-        <div class="mb-3">
-            <a href="<?php echo site_url('proyek/create'); ?>" class="btn btn-primary">Tambah Proyek Baru</a>
-            <a href="<?php echo site_url('lokasi'); ?>" class="btn btn-secondary">Lihat Lokasi</a>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="<?php echo site_url('proyek/create'); ?>" class="btn btn-primary mb-3">Tambah Proyek Baru</a>
         </div>
 
         <table class="table table-bordered table-striped">
@@ -58,8 +76,10 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <a href="<?php echo site_url('proyek/edit/' . $p['id']); ?>" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="<?php echo site_url('proyek/delete/' . $p['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus proyek ini?')">Hapus</a>
+                                <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+                                    <a href="<?php echo site_url('proyek/edit/' . $p['id']); ?>" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="<?php echo site_url('proyek/delete/' . $p['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus proyek ini?')">Hapus</a>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

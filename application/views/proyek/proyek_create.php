@@ -12,6 +12,7 @@
 <body>
     <div class="container mt-4">
         <h1 class="mb-4">Tambah Proyek Baru</h1>
+        <div id="responseMessage" class="mt-3"></div>
 
         <form id="proyekForm">
             <div class="form-group">
@@ -19,24 +20,38 @@
                 <input type="text" class="form-control" id="namaProyek" name="namaProyek" required>
             </div>
 
-            <div class="form-group">
-                <label for="client">Client:</label>
-                <input type="text" class="form-control" id="client" name="client" required>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="client">Client:</label>
+                        <input type="text" class="form-control" id="client" name="client" required>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="pimpinanProyek">Pimpinan Proyek:</label>
+                        <input type="text" class="form-control" id="pimpinanProyek" name="pimpinanProyek" required>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="tglMulai">Tanggal Mulai:</label>
-                <input type="date" class="form-control" id="tglMulai" name="tglMulai" required>
-            </div>
 
-            <div class="form-group">
-                <label for="tglSelesai">Tanggal Selesai:</label>
-                <input type="date" class="form-control" id="tglSelesai" name="tglSelesai" required>
-            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="from-group">
 
-            <div class="form-group">
-                <label for="pimpinanProyek">Pimpinan Proyek:</label>
-                <input type="text" class="form-control" id="pimpinanProyek" name="pimpinanProyek" required>
+                        <label for="tglMulai">Tanggal Mulai:</label>
+                        <input type="date" class="form-control" id="tglMulai" name="tglMulai" required>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="from-group">
+                        <label for="tglSelesai">Tanggal Selesai:</label>
+                        <input type="date" class="form-control" id="tglSelesai" name="tglSelesai" required>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
@@ -46,7 +61,7 @@
 
             <div class="form-group">
                 <label for="lokasiSet">Lokasi:</label>
-                <select id="lokasiSet" name="lokasiSet[]" class="form-control" multiple>
+                <select id="lokasiSet" name="lokasiSet[]" class="form-control">
                     <?php if (!empty($lokasi)) : ?>
                         <?php foreach ($lokasi as $lok) : ?>
                             <option value="<?php echo htmlspecialchars($lok['id']); ?>"><?php echo htmlspecialchars($lok['namaLokasi']); ?></option>
@@ -58,17 +73,15 @@
             <button type="submit" class="btn btn-primary">Tambah Proyek</button>
         </form>
 
-        <div id="responseMessage" class="mt-3"></div>
     </div>
 
-    <!-- Link ke Bootstrap JS dan dependensinya -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
         document.getElementById('proyekForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Mencegah form dari submit secara default
+            event.preventDefault();
 
             var formData = {
                 namaProyek: document.getElementById('namaProyek').value,
@@ -95,10 +108,9 @@
                     if (data.status === 'error') {
                         message.innerHTML = '<div class="alert alert-danger">' + data.message + '</div>';
                     } else {
-                        message.innerHTML = '<div class="alert alert-success">Proyek berhasil ditambahkan!</div>';
-                        // Menampilkan dialog konfirmasi
+                        message.innerHTML = '<div class="alert alert-success">Proyek berhasil diperbarui!</div>';
                         if (confirm('Proyek berhasil ditambahkan. Apakah Anda ingin kembali ke halaman sebelumnya?')) {
-                            window.location.href = '<?php echo site_url('proyek'); ?>'; // Ganti dengan URL halaman proyek
+                            window.location.href = '<?php echo site_url('proyek'); ?>';
                         }
                     }
                 })
